@@ -1,3 +1,9 @@
+#### setup
+
+```
+pip install -r requirements.txt
+```
+
 #### make a search on hemnet, run the script, tabulate the results
 
 ```
