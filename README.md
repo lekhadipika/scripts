@@ -20,16 +20,18 @@ pip install -r requirements.txt
 Run the script with the webpage URL as a command line argument. For example:
 
 ```
-python script_name.py [webpage_URL]
+python script_name.py [hemnet_webpage_URL]
 ```
 
-Replace script_name.py with the actual name of your script file and [webpage_URL] with the URL of the webpage you want to extract apartment information from. e.g. https://www.hemnet.se/bostader\?location_ids%5B%5D\=473498\&item_types%5B%5D\=bostadsratt\&rooms_min\=2\&living_area_min\=60\&price_max\=6000000\&open_house_phrase\=weekend
+Replace script_name.py with the actual name of your script file and [hemnet_webpage_URL] with the URL of the webpage you want to extract apartment information from. e.g. https://www.hemnet.se/bostader\?location_ids%5B%5D\=473498\&item_types%5B%5D\=bostadsratt\&rooms_min\=2\&living_area_min\=60\&price_max\=6000000\&open_house_phrase\=weekend
 
 The script will fetch the apartment data from the provided URL and display it in a tabular format.
 
 
 ## Output
 The script will output the apartment information in a tabular format, including details such as location, price, number of rooms, size, additional fees (avgift), viewing time, and a link to the apartment listing.
+
+Copy paste into a spreadsheet for further slice and dice. 
 
 E.g.
 ```
