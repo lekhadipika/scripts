@@ -128,6 +128,8 @@ Property image URL	address	price	Size	Area	Floor	Year of Construction	Associatio
 =IMAGE("https://bilder.hemnet.se/images/itemgallery_cut/46/dd/46ddcb859eba2cbc33b9353178fda76f.jpg")	Krysshammarvägen 32	3 995 000 kr	3,5 rum	81,6 m²	5 av 8, hiss finns	1966	BRF Krysshammaren	4 463 kr/mån	48 958 kr/m²	Carl Lekselius	=IMAGE("https://bilder.hemnet.se/images/broker_profile_small/53/19/531971ad66bb7e7785f9b1f63cbd8800.jpg")	['Sön 28 maj kl. 11:00–11:30']
 ```
 
+Copy paste this into a spreadsheet
+
 ### Note
 Make sure to replace the `/path/to/chromedriver` with the actual path to the ChromeDriver executable in the service variable of the extract_property_info function.
 
