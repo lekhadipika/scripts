@@ -1,4 +1,4 @@
-# Hemnet Data Extractor
+# Hemnet.py
 This script extracts apartment information from a given webpage URL and displays the results in a tabular format.
 
 ## Prerequisites
@@ -63,3 +63,61 @@ The script relies on the following Python libraries, which are listed in the req
 - beautifulsoup4
 
 These dependencies will be automatically installed during the installation process mentioned earlier.
+
+
+# hemnet_listing.py
+
+Hemnet Listing Information Extractor
+The hemnet_listing.py script allows you to extract property information from a given URL of a real estate listing on "hemnet.se" using Selenium and BeautifulSoup libraries in Python.
+
+Prerequisites
+Python 3.x
+Selenium
+BeautifulSoup
+ChromeDriver (compatible with your Chrome browser version)
+Installation
+Install Python 3.x from the official website.
+
+Install the required libraries by running the following command:
+
+shell
+Copy code
+pip install selenium beautifulsoup4
+Download ChromeDriver from the official website and place the executable file in a convenient location.
+
+Usage
+Place the hemnet_listing.py script in your project directory.
+
+Run the script from the command line and provide the URL of the property listing as a command-line argument:
+
+shell
+Copy code
+python hemnet_listing.py <property_url>
+Replace <property_url> with the URL of the property listing on "hemnet.se".
+
+The script will extract the following information:
+
+Property image URL
+Address
+Price
+Size
+Area
+Floor
+Year of Construction
+Association/BRF Name
+Avgift
+Pris/m²
+Broker name
+Broker image (as an HTML =IMAGE() formula)
+Viewing times
+BRF rating
+The extracted information will be displayed in a tab-separated value (TSV) format in the console output.
+
+Note
+Make sure to replace the /path/to/chromedriver with the actual path to the ChromeDriver executable in the service variable of the extract_property_info function.
+
+Adjust the column_names list according to your preferred order of columns in the TSV output.
+
+To render the images in a Google Sheets document, manually copy and paste the TSV output into the document, and resize the image columns as needed.
+
+Feel free to modify the script as per your requirements or integrate it into your existing projects.
