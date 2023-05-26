@@ -117,6 +117,17 @@ The script will extract the following information:
 
 The extracted information will be displayed in a tab-separated value (TSV) format in the console output.
 
+### Sample output
+
+
+```
+% python hemnet_listing.py https://www.hemnet.se/bostad/lagenhet-3,5rum-huvudsta-solna-kommun-krysshammarvagen-32-19950955
+
+Property image URL	address	price	Size	Area	Floor	Year of Construction	Association Name	avgift	Pris/m²	Broker name	Broker image	viewing times	BRF rating
+
+=IMAGE("https://bilder.hemnet.se/images/itemgallery_cut/46/dd/46ddcb859eba2cbc33b9353178fda76f.jpg")	Krysshammarvägen 32	3 995 000 kr	3,5 rum	81,6 m²	5 av 8, hiss finns	1966	BRF Krysshammaren	4 463 kr/mån	48 958 kr/m²	Carl Lekselius	=IMAGE("https://bilder.hemnet.se/images/broker_profile_small/53/19/531971ad66bb7e7785f9b1f63cbd8800.jpg")	['Sön 28 maj kl. 11:00–11:30']
+```
+
 ### Note
 Make sure to replace the `/path/to/chromedriver` with the actual path to the ChromeDriver executable in the service variable of the extract_property_info function.
 
