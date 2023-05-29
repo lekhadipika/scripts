@@ -1,12 +1,10 @@
-# Hemnet.py
-
 ## Usage
 
 ```
-python hemnet.py https://www.hemnet.se/bostader\?location_ids%5B%5D\=473498\&item_types%5B%5D\=bostadsratt\&rooms_min\=3\&living_area_min\=60\&price_max\=5000000\&open_house_phrase\=weekend | cut -f7 | python hemnet_listing.py
+python hemnet_search_results.py https://www.hemnet.se/bostader\?location_ids%5B%5D\=473498\&item_types%5B%5D\=bostadsratt\&rooms_min\=3\&living_area_min\=60\&price_max\=5000000\&open_house_phrase\=weekend | cut -f7 | python hemnet_listing.py
 ```
 
-
+# hemnet_search_results.py
 
 This script extracts apartment information from a given webpage URL and displays the results in a tabular format.
 
