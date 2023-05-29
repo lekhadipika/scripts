@@ -52,7 +52,7 @@ def extract_property_info(url):
     # Price
     listed_price_element = soup.find('p', class_='qa-property-price')
     property_info['price'] = clean_price_string(listed_price_element.text.strip() if listed_price_element else "")
-    
+
     # Size
     size_element = soup.find('dt', text='Antal rum')
     property_info['Size'] = size_element.find_next('dd').text.strip() if size_element else ''
@@ -84,8 +84,8 @@ def extract_property_info(url):
     # Broker name
     broker_name_element = soup.find('p', class_='broker-card__text qa-broker-name')
 
-    property_info['Broker name'] =  broker_name_element.text.strip() if broker_name_element else ''
-    property_info['Broker link'] =  broker_name_element.find('a')['href'].strip() if broker_name_element else ''
+    property_info['Broker name'] = broker_name_element.text.strip() if broker_name_element else ''
+    property_info['Broker link'] = broker_name_element.find('a')['href'].strip() if broker_name_element else ''
 
     # Broker name and image
     broker_card_element = soup.find('div', class_='broker-card__avatar')
@@ -99,15 +99,18 @@ def extract_property_info(url):
     viewing_times_list = soup.find('ul', class_='listing-showings__list qa-showings-list')
 
     # Find all viewing time items
-    viewing_time_items = viewing_times_list.find_all('li', class_='listing-showings__showing')
+    viewing_time_items = viewing_times_list.find_all('li', class_='listing-showings__showing') if viewing_times_list else None
 
     # Extract the viewing times
     viewing_times = []
-    for item in viewing_time_items:
-        time_element = item.find('span', class_='listing-showings__showing-time')
-        if time_element:
-            viewing_times.append(time_element.text.strip())
-    property_info['viewing times'] = viewing_times
+    if not viewing_time_items:
+        property_info['viewing times'] = ""
+    else:
+        for item in viewing_time_items:
+            time_element = item.find('span', class_='listing-showings__showing-time')
+            if time_element:
+                viewing_times.append(time_element.text.strip())
+        property_info['viewing times'] = viewing_times
 
     # BRF rating
     ratings_element = soup.find('div', class_='housing-cooperative')
@@ -123,25 +126,25 @@ def extract_property_info(url):
 
     return property_info
 
-# Example usage
-if len(sys.argv) < 2:
-    print("Please provide the URL as a command line argument.")
-    sys.exit(1)
+# Read URLs from standard input (piped from hemnet.py)
+for url in sys.stdin:
+    url = url.strip()  # Remove leading/trailing whitespaces and newline characters
 
-url = sys.argv[1]
-output = extract_property_info(url)
+    
+    output = extract_property_info(url)
+    
+    #output = {}
 
-# Define the order of column names in the TSV
-column_names = [
-    'Property image URL', 'address', 'price', 'Size', 'Area', 'Floor', 'Year of Construction',
-    'Association Name', 'avgift', 'Pris/m²', 'Broker name', 'Broker image', 'viewing times', 'BRF rating'
-]
+    # Define the order of column names in the TSV
+    column_names = [
+        'Property image URL', 'address','viewing times', 'price', 'Size', 'Area', 'Floor', 'Year of Construction',
+        'Association Name', 'avgift', 'Pris/m²', 'Broker name', 'Broker image',  'BRF rating'
+    ]
 
-# Output the property information in TSV format
-#tsv_output = '\t'.join(column_names) + '\n'
-tsv_output = ''
-for column in column_names:
-    tsv_output += str(output.get(column, '')) + '\t'
-tsv_output = tsv_output.strip()
+    # Output the property information in TSV format
+    tsv_output = ''
+    for column in column_names:
+        tsv_output += str(output.get(column, '')) + '\t'
+    tsv_output = tsv_output.strip()
 
-print(tsv_output)
+    print(tsv_output)
