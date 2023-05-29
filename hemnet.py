@@ -35,7 +35,6 @@ def extract_apartments(url):
 
         # Extract avgift
         avgift_element = listing.find('div', class_='listing-card__attribute--fee')
-        print(avgift_element)
         if avgift_element:
             apartment['Avgift'] = avgift_element.text.strip()
 
@@ -63,7 +62,8 @@ apartments = extract_apartments(url)
 
 # Print the output with column titles
 titles = ['Location', 'Price', 'Rooms', 'Size', 'Avgift', 'Viewing Time', 'Link']
-output = '\t'.join(titles) + '\n'
+output = ''
+#output += '\t'.join(titles) + '\n'
 for apartment in apartments:
     output += '\t'.join(apartment.get(title, '') for title in titles) + '\n'
 
