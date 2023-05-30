@@ -3,8 +3,6 @@ import requests
 from bs4 import BeautifulSoup
 
 
-
-
 def scrape_link(url):
     # Send a GET request to the URL
     response = requests.get(url)
@@ -30,6 +28,7 @@ def scrape_link(url):
         broker_link = broker.find("a", class_="n1zfB _1uxTS _3TSQW")
         if broker_link:
             data[2] = broker_link.text.strip()
+            # Optional broken link. Uncomment this line if you want broker profile link
             # data[3] = broker_link.get("href")
 
         return data
@@ -86,5 +85,3 @@ with open(csv_file, "w", newline="", encoding="utf-8") as file:
     writer.writerows(data)  # Write search results
 
 print("Search results have been scraped and saved to", csv_file)
-
-
