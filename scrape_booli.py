@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 def scrape_link(url):
     # Send a GET request to the URL
     response = requests.get(url)
-    data = [""] * 4
+    data = [""] * 5
     # Check if the request was successful
     if response.status_code == 200:
         # Create a BeautifulSoup object to parse the HTML content
@@ -24,6 +24,8 @@ def scrape_link(url):
                     data[0] = floor
                 elif apt_attr_text == "Byggår":
                     data[1] =item.find("div", class_="_18w8g").text.strip()
+        
+        # Broker info
         broker = soup.find("div", class_="_1XCe7")
         broker_link = broker.find("a", class_="n1zfB _1uxTS _3TSQW")
         if broker_link:
@@ -31,6 +33,11 @@ def scrape_link(url):
             # Optional broken link. Uncomment this line if you want broker profile link
             # data[3] = broker_link.get("href")
 
+        # Booli price
+        booli_price = soup.find("h3", class_="_1g-8A")
+        if booli_price: 
+            data[4] = booli_price.text.strip()
+        
         return data
     else:
         print("Failed to retrieve the page:", response.status_code)
@@ -51,7 +58,7 @@ for i in range(1, num_pages+1):
 
     # Find the elements containing the search results
     results = soup.find_all("a", class_="_2CbdZ")
-    print("Len results {}".format(len(results)))
+    print("Number of results on page {}".format(len(results)))
     # Prepare the data to be written to the CSV file
 
     for result in results:
@@ -80,7 +87,7 @@ csv_file = "search_results.csv"
 # Write the data to the CSV file
 with open(csv_file, "w", newline="", encoding="utf-8") as file:
     writer = csv.writer(file)
-    headers = ["Title", "Link", "Address", "Price", "Num rooms", "Area", "Avgift", "Floor", "Year built", "Broker", "Broker Link"]
+    headers = ["Title", "Link", "Address", "Price", "Num rooms", "Area", "Avgift", "Floor", "Year built", "Broker", "Broker Link", "Booli price"]
     writer.writerow(headers)  # Write header row
     writer.writerows(data)  # Write search results
 
